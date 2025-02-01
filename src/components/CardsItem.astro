@@ -1,0 +1,76 @@
+---
+const {
+  href,
+  title,
+  date,
+  current,
+  description,
+  image,
+  tags,
+  class: className,
+} = Astro.props;
+
+import ReadMore from "@/components/Readmore.astro";
+---
+
+<article class={`h-full flex flex-col ${className}`}>
+  <div
+    class="flex flex-col flex-grow dark:bg-white border dark:border-gray-200 rounded-lg shadow-sm bg-back-100 border-back-100"
+  >
+    <a href={href}>
+      <img
+        class="w-full h-[280px] object-cover rounded-t-lg"
+        src={image}
+        alt=""
+      />
+    </a>
+    <div class="p-5 flex flex-col flex-grow">
+      <!-- TÍTULO + ESTADO / FECHA -->
+      <div class="mb-2 flex justify-between items-center">
+        <h5
+          class="text-2xl font-bold tracking-tight dark:text-gray-900 text-white"
+        >
+          {title}
+        </h5>
+        {
+          current ? (
+            <span class="bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+              {current}
+            </span>
+          ) : (
+            <span class="text-gray-500 text-sm">{date}</span>
+          )
+        }
+      </div>
+
+      <!-- DESCRIPCIÓN -->
+      <p class="dark:text-gray-700 text-gray-400 flex-grow">
+        {description}
+      </p>
+
+      <!-- SECCIÓN FIJA AL FINAL -->
+      <div class="mt-auto">
+        <!-- TAGS -->
+        <ul class="flex flex-wrap gap-2 mb-3 mt-5">
+          {
+            tags.map((tag) => (
+              <li>
+                <span
+                  class={`flex items-center gap-x-2 rounded-xl text-xs ${tag.class} py-1 px-2`}
+                >
+                  <tag.icon class="size-4" />
+                  {tag.name}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- BOTÓN READ MORE -->
+        <div class="flex justify-start">
+          <ReadMore href={href} target="_blank" rel="noopener noreferrer" />
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

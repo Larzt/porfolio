@@ -1,0 +1,78 @@
+---
+import SunIcon from "./icons/Sun.astro";
+import MoonIcon from "./icons/Moon.astro";
+---
+
+<div class="relative ml-1 mr-1">
+  <button
+    transition:persist
+    id="theme-toggle-btn"
+    class="appearance-none border-none flex hover:scale-125 transition"
+  >
+    <span class="sr-only">Elige el tema</span>
+    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <MoonIcon
+      id="dark"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
+  </button>
+</div>
+
+<style>
+  @keyframes scale-up-center {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script is:inline>
+  let remove = null;
+
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined") {
+      return localStorage.getItem("theme") ?? "dark"; // Default to "dark"
+    }
+    return "dark"; // Default to "dark"
+  };
+
+  const updateIcon = (themePreference) => {
+    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
+      element.style.scale = element.id === themePreference ? "1" : "0";
+    });
+  };
+
+  const updateTheme = () => {
+    if (remove != null) {
+      remove();
+    }
+
+    const themePreference = getThemePreference();
+    const isDark = themePreference === "dark";
+
+    updateIcon(themePreference);
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+  };
+
+  updateTheme();
+
+  // Cambio de tema directamente al hacer clic en el botón
+  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
+    const currentTheme = getThemePreference();
+    const newTheme = currentTheme === "dark" ? "light" : "dark"; // Alterna entre "dark" y "light"
+
+    localStorage.setItem("theme", newTheme); // Guardar la preferencia en localStorage
+    updateTheme(); // Aplicar el nuevo tema
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    updateTheme();
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" });
+  });
+</script>

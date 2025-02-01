@@ -1,11 +1,87 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Badge from "@/components/Badge.astro";
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import LinkedinIcon from "@/components/icons/Linkedin.astro";
+import GithubIcon from "@/components/icons/Github.astro";
+import MailIcon from "@/components/icons/Mail.astro";
+import SocialPill from "@/components/SocialPill.astro";
+import Cards from "@/components/Cards.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import AboutMe from "@/components/AboutMe.astro";
+import ProfileIcon from "@/components/icons/Profile.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Porfolio de Alejandro - Desarrollador Web y Programador Unity"
+  description="Contrata a Alejandro para crear tu aplicacion web, movil o crear tu proximo juego en unity. Especializado en resolver problemas."
+>
+  <main class="px-4 xl:w-[1120px]">
+    <SectionContainer class="py-44 pb-32">
+      <div class="flex justice-center items-center gap-x-4 pb-6">
+        <img
+          class="rounded-full size-12 mb-4"
+          src="https://r-charts.com/es/miscelanea/procesamiento-imagenes-magick_files/figure-html/color-fondo-imagen-r.png"
+          alt="larzt photo"
+        />
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=alejandrorodriguezalcala1@gmail.com&su=Solicitud%20de%20entrevista%20de%20trabajo&body=Estimado%20Alejandro,%0A%0AQuisiera%20contactarle%20para%20coordinar%20una%20entrevista%20de%20trabajo.%0A%0ANombre:%0ATeléfono:%0A%0AAtentamente,%0A[Nombre]"
+          class="cursor-pointer"
+          target="_blank"
+        >
+          <Badge>Opentowork</Badge>
+        </a>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold pb-6">
+        Hey, soy Alejandro <a
+          href="https://linkedin.com/in/alejandro-rodriguezm/"
+          target="_blank"
+          rel="noopener"
+        >
+        </a>
+      </h1>
+      <h2 class="text-xl lg:text-2xl opacity-80 text-wrap max-w-[500px]">
+        Estudiante de Ingenieria Informatica. De Tenerife, España. Especializado
+        en crear soluciones unicas.
+      </h2>
+
+      <nav class="flex mt-2 gap-4 flex-wrap">
+        <SocialPill
+          href="https://linkedin.com/in/alejandro-rodriguezm/"
+          target="_blank"
+        >
+          <LinkedinIcon class="size-4 lg:size-6" />LinkedIn
+        </SocialPill>
+
+        <SocialPill href="https://github.com/Larzt" target="_blank">
+          <GithubIcon class="size-4 lg:size-6" />Github
+        </SocialPill>
+
+        <SocialPill
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=alejandrorodriguezalcala1@gmail.com&su=Solicitud%20de%20entrevista%20de%20trabajo&body=Estimado%20Alejandro,%0A%0AQuisiera%20contactarle%20para%20coordinar%20una%20entrevista%20de%20trabajo.%0A%0ANombre:%0ATeléfono:%0A%0AAtentamente,%0A[Nombre]"
+          target="_blank"
+        >
+          <MailIcon class="size-4 lg:size-6" />Gmail
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+
+    <SectionContainer id="projects">
+      <h2 class="text-4xl font-semibold mb-8 flex items-center gap-x-5">
+        <CodeIcon class="size-10" />
+        Proyectos
+      </h2>
+      <Cards />
+    </SectionContainer>
+
+    <SectionContainer id="about-me">
+      <h2 class="text-4xl font-semibold mb-8 flex items-center gap-x-5">
+        <ProfileIcon class="size-10" />
+        About Me
+      </h2>
+      <AboutMe />
+    </SectionContainer>
+  </main>
 </Layout>

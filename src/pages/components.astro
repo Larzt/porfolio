@@ -1,0 +1,29 @@
+---
+import Badge from "@/components/Badge.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import SocialPill from "@/components/SocialPill.astro";
+import Layout from "@/layouts/Layout.astro";
+import ItchIcon from "@/components/icons/Itch.astro";
+---
+
+<Layout
+  title="Design System portfolio.dev"
+  description="Componentez del porfolio"
+>
+  <SectionContainer class="pu-44 pb-32 flex flex-col gap-y-10">
+    <article class="mb-10">
+      <h1 class="mb-4">&lt;Badge /&gt;</h1>
+      <Badge>Tailwind</Badge>
+    </article>
+
+    <article class="mb-10">
+      <h1 class="mb-2">&lt;SocialPill /&gt;</h1>
+      <div class="flex">
+        <SocialPill href="https://larzt.itch.io/">
+          <ItchIcon class="size-4 md:size-6" />
+          Itch.io
+        </SocialPill>
+      </div>
+    </article>
+  </SectionContainer>
+</Layout>
