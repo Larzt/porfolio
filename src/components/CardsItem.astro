@@ -34,7 +34,13 @@ import ReadMore from "@/components/Readmore.astro";
         </h5>
         {
           current ? (
-            <span class="bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+            <span
+              class={`text-white text-xs font-semibold px-2 py-1 rounded-full ${
+                current === "Unavailable" || current === "No Disponible"
+                  ? "bg-red-600"
+                  : "bg-green-600"
+              }`}
+            >
               {current}
             </span>
           ) : (
